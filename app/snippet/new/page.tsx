@@ -19,14 +19,19 @@ const NewSnippet = () => {
           </div>
           <div className="space-y-1.5">
             <label className="text-lg font-medium">Code:</label>
-            <Editor
+            {/* <Editor
               height="50vh"
               defaultLanguage="javascript"
               defaultValue={`// // some comments
 // const add = ()=>{
 //     return a + b;
 // }`}
-            />
+            /> */}
+            <textarea
+              name="code"
+              className="textarea h-96 w-full border border-gray-300 p-2.5 rounded-lg focus:outline-none"
+              placeholder="Bio"
+            ></textarea>
           </div>
           <button
             type="submit"
