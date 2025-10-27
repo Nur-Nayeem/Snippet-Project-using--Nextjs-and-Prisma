@@ -11,7 +11,7 @@ const EditSnippet = async ({ params }: { params: Promise<{ id: string }> }) => {
   });
   if (!snippet) return <h2>Not found</h2>;
   return (
-    <div className="w-4xl mx-auto">
+    <div>
       <EditSnippetForm snippet={snippet} />
     </div>
   );

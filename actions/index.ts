@@ -2,6 +2,16 @@
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 
+export const newSnippet = async (title: string, code: string) => {
+  await prisma.snippet.create({
+    data: {
+      title,
+      code,
+    },
+  });
+  redirect("/");
+};
+
 export const updateSnippet = async (id: number, code: string) => {
   await prisma.snippet.update({
     where: {

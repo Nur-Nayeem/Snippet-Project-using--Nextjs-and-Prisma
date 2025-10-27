@@ -16,19 +16,19 @@ const ViewSpinnet = async ({ params }: { params: Promise<{ id: string }> }) => {
   }
   const dleteSnippetAction = deleteSnippet.bind(null, snippet.id);
   return (
-    <div className="my-container pt-5">
+    <div>
       <div className="flex justify-between items-center">
         <h2 className="font-bold text-xl my-2.5">{snippet?.title}</h2>
         <div className="space-x-2.5">
           <Link href={`/snippet/${snippet.id}/edit`}>
-            <button className="text-white py-2.5 px-3.5 bg-black rounded-lg">
+            <button className="text-white py-2.5 px-3.5 bg-black rounded-lg cursor-pointer">
               edit
             </button>
           </Link>
           <button
             onClick={dleteSnippetAction}
             type="submit"
-            className="text-white py-2.5 px-3.5 bg-red-500 rounded-lg"
+            className="text-white py-2.5 px-3.5 bg-red-500 rounded-lg hover:bg-red-600 cursor-pointer"
           >
             delete
           </button>

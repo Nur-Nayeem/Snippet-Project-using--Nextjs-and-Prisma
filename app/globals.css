@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
-.my-container {
-  @apply max-w-[1440px] mx-auto;
+body {
+  max-width: 1440px;
+  margin: auto;
+  margin-top: 16px;
 }
