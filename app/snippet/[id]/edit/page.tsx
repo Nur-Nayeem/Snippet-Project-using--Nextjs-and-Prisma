@@ -18,3 +18,11 @@ const EditSnippet = async ({ params }: { params: Promise<{ id: string }> }) => {
 };
 
 export default EditSnippet;
+
+export const generateStaticParams = async () => {
+  const snippets = await prisma.snippet.findMany();
+
+  return snippets.map((snippet) => {
+    return { id: snippet.id.toString() };
+  });
+};

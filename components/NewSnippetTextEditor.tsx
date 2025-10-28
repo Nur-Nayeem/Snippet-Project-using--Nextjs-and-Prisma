@@ -1,29 +1,30 @@
 "use client";
-import { newSnippet } from "@/actions";
+
 import { Editor } from "@monaco-editor/react";
-import React, { useState } from "react";
+import React, { useActionState, useState } from "react";
+import * as actions from "@/actions";
 
 const NewSnippetTextEditor = () => {
-  const [title, setTitle] = useState("");
   const [code, setCode] = useState("");
 
   const handleCodeArea = (value: string = "") => {
     setCode(value);
   };
-
-  const createNewSnippet = newSnippet.bind(null, title, code);
+  // const formData = { title, code };
+  const [formStateData, handleForm] = useActionState(actions.newSnippet, {
+    message: "",
+  });
 
   return (
     <div>
       <div className="w-full">
-        <form action={createNewSnippet} className="w-full space-y-3.5">
+        <form action={handleForm} className="w-full space-y-3.5">
           <div className="flex flex-col gap-1.5">
             <label className="text-lg font-medium">Title:</label>
             <input
               className="border border-gray-300 p-2.5 rounded-lg focus:outline-none"
-              value={title}
+              name="title"
               placeholder="title of the snippet"
-              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
           <div className="space-y-1.5">
@@ -35,14 +36,11 @@ const NewSnippetTextEditor = () => {
               value={code}
               onChange={handleCodeArea}
             />
-
-            {/* <textarea
-              name="code"
-              id="code"
-              className="textarea h-96 w-full border border-gray-300 p-2.5 rounded-lg focus:outline-none"
-              placeholder="Write code here"
-            ></textarea> */}
+            <input type="hidden" name="code" value={code} />
           </div>
+          {formStateData?.message && (
+            <p className="text-red-500">{formStateData.message}</p>
+          )}
           <button
             type="submit"
             className="w-full bg-black/80 text-white py-2.5 rounded-lg hover:bg-black cursor-pointer"
